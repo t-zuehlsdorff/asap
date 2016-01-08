@@ -1,5 +1,5 @@
-# asap
-A Scout And Patcher
+# ASAP
+"A Scout And Patcher" aims to scout new versions of software stored in the FreeBSD portstree and automatically tries to create and verify a patch to update its version in the portstree.
 
 # Requirements
 Needed ports:
