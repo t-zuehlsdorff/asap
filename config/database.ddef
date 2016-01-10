@@ -1,6 +1,6 @@
-[BOUNCE-ADS]
+[ASAP]
 CONNECTION = "pgsql:host=localhost;dbname=asap"
-USER = 
-PASS = 
+USER = ""
+PASS = ""
 BIND-DATA-TYPE = true
 DEFAULT = true

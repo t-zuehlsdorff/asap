@@ -10,9 +10,23 @@ date_default_timezone_set('Europe/Berlin');
 /* define path constants */
 /*************************/
 
-define('PROJECT_PATH',   __DIR__ . '/');
-define('CONFIG_PATH',    PROJECT_PATH . 'config/');
-define('SQL_PATH',       PROJECT_PATH . 'database/sql/');
+const PROJECT_PATH = __DIR__ . '/';
+const CONFIG_PATH  = PROJECT_PATH . 'config/';
+const SQL_PATH     = PROJECT_PATH . 'database/sql';
+const SCOUT_PATH   = PROJECT_PATH . 'scout/';
+const LIB_PATH     = PROJECT_PATH . 'lib/';
+
+const SCOUT_RUBYGEMS_PATH = SCOUT_PATH . 'rubygems/';
+const LIB_SCOUT_PATH      = LIB_PATH   . 'scout/';
+
+/***************************/
+/* scout related constants */
+/***************************/
+
+const RUBYGEMS_API_HOST            = 'https://rubygems.org/api/v1';
+const RUBYGEM_GET_GEM              = RUBYGEMS_API_HOST . DIRECTORY_SEPARATOR . 'gems';
+const RUBYGEMS_API_RESPONSE_FORMAT = '.json'; # supported api response formats: .json, .yaml
+const FREEBSD_RUBYGEM_PORT_PREFIX  = 'rubygem-';
 
 // redefine include path to add FreeBSD share path
 set_include_path('.:/usr/local/share/pear:/usr/local/share');
