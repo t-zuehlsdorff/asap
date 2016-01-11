@@ -16,7 +16,7 @@ namespace asap\lib\scout;
   * this function will compare two version numbers. it does this the "php way".
   * if the $strApiVersion contains any letter, it will prevent (returns false) the comparison,
   * because we don't want to have any [alpha, beta, dev, rc, ...] versions in the ports tree.
-  * it expects the first argument to be the "current" version and the second the version to be compared to.
+  * it expects the first argument to be the "current" port version and the second the version to be compared to.
   *
   **/
 function compareVersions($strPortVersion, $strApiVersion) {
@@ -28,7 +28,11 @@ function compareVersions($strPortVersion, $strApiVersion) {
     return null;
 
   $strLowerCaseGemVersion = \strtolower($strApiVersion);
-  $arrLetters             = range('a', 'z');
+
+  if('v' === $strLowerCaseGemVersion[0])
+    $strLowerCaseGemVersion = \substr($strLowerCaseGemVersion, 1);
+
+  $arrLetters = range('a', 'z');
 
   # we don't want any alpha/beta/dev/rc versions in the ports tree
   foreach(\str_split($strLowerCaseGemVersion) AS $strChar)
