@@ -1,0 +1,14 @@
+# comment
+
+PORTNAME=	name
+PORTVERSION=	2.1.0
+CATEGORIES=	www
+MASTER_SITES=	http://www.url.tld/subdir/
+
+MAINTAINER=	email@address.tld
+COMMENT=	Comment
+
+do-install:
+	${INSTALL} something
+
+.include <bsd.port.mk>
