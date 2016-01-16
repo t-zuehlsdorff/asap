@@ -14,6 +14,8 @@ define('PROJECT_PATH',   __DIR__ . '/');
 define('CONFIG_PATH',    PROJECT_PATH . 'config/');
 define('SQL_PATH',       PROJECT_PATH . 'database/sql/');
 
+define('PORTSTREE_LIB_PATH', PROJECT_PATH . 'portstree/');
+
 // redefine include path to add FreeBSD share path
 set_include_path('.:/usr/local/share/pear:/usr/local/share');
 

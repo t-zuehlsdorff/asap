@@ -3,6 +3,7 @@
 namespace APHPUnit\Testcases;
 
 require_once __DIR__ . '/../config.inc.php';
+require_once PORTSTREE_LIB_PATH . '/config.inc.php';
 
 /**
   * scan existing portstree and check
