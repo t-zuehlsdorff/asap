@@ -53,7 +53,12 @@ function printTestResults($arrTestResults) {
     
     if(isset($arrCase['is_exception']) && true === $arrCase['is_exception']) {
       print "Expected Exception:\t{$arrCase['exception_expected']}\n";
-      print "Uncatched Exception:\t{$arrCase['exception_uncatched']}\n\n";
+      
+      if(!empty($arrCase['exception_uncatched']))
+        print "Uncatched Exception:\t{$arrCase['exception_uncatched']}\n\n";
+      else
+        print "No Exception was thrown!\n\n";
+      
     }
     
     if(isset($arrCase['is_assertion']) && true === $arrCase['is_assertion']) {
