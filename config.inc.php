@@ -28,6 +28,8 @@ const RUBYGEM_GET_GEM              = RUBYGEMS_API_HOST . DIRECTORY_SEPARATOR . '
 const RUBYGEMS_API_RESPONSE_FORMAT = '.json'; # supported api response formats: .json, .yaml
 const FREEBSD_RUBYGEM_PORT_PREFIX  = 'rubygem-';
 
+define('PORTSTREE_LIB_PATH', PROJECT_PATH . 'portstree/');
+
 // redefine include path to add FreeBSD share path
 set_include_path('.:/usr/local/share/pear:/usr/local/share');
 
