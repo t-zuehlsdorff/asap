@@ -76,6 +76,8 @@ function get_portlist_from($strTree) {
 
   }
 
+  array_multisort($arrPortList);
+  
   return $arrPortList;
   
 }
