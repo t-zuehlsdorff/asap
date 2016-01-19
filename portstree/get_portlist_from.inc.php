@@ -31,11 +31,51 @@ namespace Portstree;
   **/
 function get_portlist_from($strTree) {
 
-  // steps:
-  // - check for exceptional cases
-  // - read portstree
-  // - build result
+  if(!is_string($strTree))
+    throw new \Exception ("given parameter must be a string but it is: " . gettype($strTree));
 
-  // side-notes: parallel scan of categories for faster results?
+  if(!is_dir($strTree))
+    throw new \Exception ("given path is not a directory: $strTree");
 
+  if(!is_readable($strTree))
+    throw new \Exception ("given path is not readable: $strTree");
+
+  // normalize path to contain a slash at the end in very case
+  $strTree = ('/' === $strTree[mb_strlen($strTree) - 1]) ? $strTree : $strTree . '/';
+  
+  $arrPortList = array();
+
+  $objPortsTree = new \DirectoryIterator($strTree);
+
+  foreach ($objPortsTree AS $objCategory) {
+
+    if($objCategory->isDot() || !$objCategory->isDir())
+      continue;
+
+    $strCategoryName = $objCategory->getFilename();
+
+    // ignore every director starting with an uppercase char
+    $strFirstChar = $strCategoryName[0];
+    if($strFirstChar === strtoupper($strFirstChar))
+      continue;
+
+    // ignore distfile directory
+    if('distfiles' === $strCategoryName)
+      continue;
+
+    $objPortCategory = new \DirectoryIterator($strTree . $strCategoryName);
+
+    foreach($objPortCategory AS $objPortDir) {
+      
+      if($objPortDir->isDot() || !$objPortDir->isDir())
+        continue;
+      
+      $arrPortList[$strCategoryName][] = $objPortDir->getFilename();
+
+    }
+
+  }
+
+  return $arrPortList;
+  
 }
