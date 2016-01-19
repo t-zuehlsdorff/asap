@@ -53,9 +53,35 @@ function testScannedPortsTreeIsNotAString() {
   **/
 function testScannedPortsTreeIsNotADir() {
 
-  // cases:
-  // - nonexisting dir
-  // - path is file
+  // create nonexisting dir-path
+  while(true) {
+    $strNoneExistingDir = '/' . uniqid();
+    if(!is_dir($strNoneExistingDir) && !is_file($strNoneExistingDir))
+      break;
+  }
+
+  $cloScanWithException = function() use ($strNoneExistingDir) {
+    \Portstree\get_portlist_from($strNoneExistingDir);
+  };
+  expectException($cloScanWithException, '\Exception');
+  
+}
+
+/**
+  * check for exception if given portstree is a file in reality
+  *
+  **/
+function testScannedPortsTreeIsAFile() {
+
+  $strFile = tempnam(sys_get_temp_dir(), 'asap-testcase');
+
+  $cloScanWithException = function() use ($strFile) {
+    \Portstree\get_portlist_from($strFile);
+  };
+  expectException($cloScanWithException, '\Exception');
+
+  unlink($strFile);
+
 }
 
 /**
@@ -64,6 +90,22 @@ function testScannedPortsTreeIsNotADir() {
   **/
 function testScannedPortsTreeIsNotReadable() {
 
+  // generate tmp-dir name
+  while(true) {
+    $strDirName = sys_get_temp_dir() . 'asap-testcase-' . uniqid();
+    if(!is_dir($strDirName) && !file_exists($strDirName))
+      break;
+  }
+
+  mkdir($strDirName, 0000);
+
+  $cloScanWithException = function() use ($strDirName) {
+    \Portstree\get_portlist_from($strDirName);
+  };
+  expectException($cloScanWithException, '\Exception');
+
+  rmdir($strDirName);
+  
 }
 
 /**
