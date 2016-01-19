@@ -11,3 +11,14 @@ Needed software:
 
 Needed PHP modules:
 - pdo_pgsql
+
+# Additional requirements for tests
+
+Needed PHP modules:
+- pcntl
+- posix
+- sysvmsg
+- sysvshm
+
+How to execute the tests:
+php third_party/aphpunit/aphpunit.php tests/
