@@ -63,8 +63,8 @@ The scout has the honor to scout, whether the given port has an update available
 
 ## Version comparison
 
-the idea is to look over the given port versions and to find the different used version formats.
-let's start with the most obvious format. I think it should be something like a number, maybe one or two digits, (if) followed
+The idea is to look over the given port versions and to find the different used version formats.
+Lets start with the most obvious format. I think it should be something like a number, maybe one or two digits, (if) followed
 normaly by a dot, maybe again 1-3 digits, maybe again a dot followed by 1-3 digits.
 
 ```postgresql
@@ -91,6 +91,9 @@ asap=# SELECT COUNT(*) FROM versions WHERE currentversion ~ '^[\d]+(\.\d+)*$';
 
 Huh, that is 94,43%!
 Okay, now we drop those data to see what's left.
+
+ ```postgresql
+asap=# DELETE FROM versions WHERE currentversion ~ '^[\d]+(\.\d+)*$';
 
 ```postgresql
 asap=# SELECT currentversion FROM versions LIMIT 25;
@@ -169,7 +172,7 @@ asap=# SELECT COUNT(*) FROM versions WHERE currentversion ~ '^v[\d]+(\.\d+)*$';
 (1 Zeile)
 
 Damn, only 9 matches :(
-
+Quite obviously there are 12 versions with the "v" prefix, but even 3 of them could not be parsed simply.
 
 tl;dr
 
@@ -184,5 +187,5 @@ tl;dr
 
 820 not supported.
 
-note: first regex that covers the most, will also catch pure versions that are dates.
-this is not what we want.
+Note: first regex that covers the most will also catch pure versions that are dates.
+This is not what we want, because dates need another handling.
