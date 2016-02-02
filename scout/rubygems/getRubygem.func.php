@@ -16,7 +16,7 @@ namespace asap\scout\rubygems;
   **/
 function getRubygem($strApiEndpoint) {
 
-  if(!\is_string($strApiEndpoint) || '' === $strApiEndpoint)
+  if(!\is_string($strApiEndpoint) || empty($strApiEndpoint))
     return null;
 
   if('http' !== \strtolower(\substr($strApiEndpoint, 0, 4)))

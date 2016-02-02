@@ -18,7 +18,7 @@ namespace asap\scout\rubygems;
   **/
 function getRubygemApiRequestUrl($strRubygemName) {
 
-  if(!\is_string($strRubygemName))
+  if(!\is_string($strRubygemName) || empty($strRubygemName))
     return null;
 
   if(\substr($strRubygemName, 0, strlen(FREEBSD_RUBYGEM_PORT_PREFIX)) === FREEBSD_RUBYGEM_PORT_PREFIX)
