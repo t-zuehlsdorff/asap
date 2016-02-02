@@ -16,13 +16,13 @@ namespace asap\scout\rubygems;
   * the response format will be whatever RUBYGEMS_API_RESPONSE_FORMAT const is defined to.
   *
   **/
-function getRubygemApiRequestUrl($strRubygemName = '') {
+function getRubygemApiRequestUrl($strRubygemName) {
 
-  if(!\is_string($strRubygemName) || '' === $strRubygemName)
+  if(!\is_string($strRubygemName))
     return null;
 
-    if(\substr($strRubygemName, 0, strlen(FREEBSD_RUBYGEM_PORT_PREFIX)) === FREEBSD_RUBYGEM_PORT_PREFIX)
-      $strRubygemName = \substr($strRubygemName, strlen(FREEBSD_RUBYGEM_PORT_PREFIX));
+  if(\substr($strRubygemName, 0, strlen(FREEBSD_RUBYGEM_PORT_PREFIX)) === FREEBSD_RUBYGEM_PORT_PREFIX)
+    $strRubygemName = \substr($strRubygemName, strlen(FREEBSD_RUBYGEM_PORT_PREFIX));
 
   return RUBYGEM_GET_GEM . DIRECTORY_SEPARATOR . $strRubygemName . RUBYGEMS_API_RESPONSE_FORMAT;
 
